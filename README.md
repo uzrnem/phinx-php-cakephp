@@ -18,7 +18,7 @@ version: "3.7"
 
 services:
   phinx:
-    image: uzrnem/phinx:0.1
+    image: uzrnem/phinx:0.2
     container_name: phinx
     volumes:
       - $PWD/db:/phinx/db
@@ -36,7 +36,7 @@ version: "3.7"
 
 services:
   phinx:
-    image: uzrnem/phinx:0.1
+    image: uzrnem/phinx:0.2
     container_name: phinx
     volumes:
       - $PWD/db:/phinx/db
