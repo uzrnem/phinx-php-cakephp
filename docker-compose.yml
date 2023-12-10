@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   phinx:
-    image: uzrnem/phinx:0.2
+    image: uzrnem/phinx:0.4
     container_name: phinx
     volumes:
       - $PWD/db:/phinx/db
@@ -13,6 +13,7 @@ services:
       PHINX_DB_USERNAME: root
       PHINX_DB_PASSWORD: root
       PHINX_DB_PORT: 3306
+    command: tail -f /dev/null
     networks:
       - docker-compose-files_mysql
 

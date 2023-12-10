@@ -1,3 +1,4 @@
+# docker build . -t uzrnem/phinx:0.4
 FROM php:8.0-apache
 
 RUN apt-get update -y && \
@@ -17,7 +18,11 @@ WORKDIR /phinx
 COPY phinx.php /phinx/.
 
 RUN curl -s https://getcomposer.org/installer | php
-
 RUN php composer.phar require robmorgan/phinx
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+RUN useradd admin
+RUN chown -R admin:admin /phinx
+RUN chmod -R 777 /phinx
+USER admin
+
+CMD [ "./vendor/bin/phinx migrate && ./vendor/bin/phinx seed:run -s AccountTypeSeeder -s TransactionTypeSeeder -s TagSeeder && tail -f /dev/null" ]
